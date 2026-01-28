@@ -17,11 +17,13 @@ import DuctCleaning from './pages/DuctCleaning';
  */
 const HomePage: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Handle scroll events for header styling
+  // Handle scroll events for header styling and scroll to top button
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setShowScrollTop(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -49,6 +51,22 @@ const HomePage: React.FC = () => {
         <VisionSection />
         <ContactSection />
       </main>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-8 right-8 glass p-3 rounded-full shadow-lg hover:shadow-glow-tan-lg transition-all duration-300 z-40 group"
+          title="Back to Top"
+        >
+          <svg className="w-6 h-6 text-accent-200 group-hover:text-accent-100 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+          </svg>
+          <span className="absolute right-full mr-2 px-3 py-1 bg-bg-800 text-accent-100 text-sm rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            Back to Top
+          </span>
+        </button>
+      )}
 
       {/* Footer */}
       <Footer onNavigate={handleNavigation} />

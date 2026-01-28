@@ -67,16 +67,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
-
-        {/* Floating Action Button */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 w-12 h-12 bg-accent-blue text-bg-primary rounded-full flex items-center justify-center shadow-lg hover:shadow-glow-blue-lg transition-all duration-300 z-40"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
-          </svg>
-        </button>
       </footer>
 
       {/* Modal - Rendered outside footer */}

@@ -1,9 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionContainer } from '../ui/Section';
-import ErrorBoundary from '../ui/ErrorBoundary';
-
-const CubeScene = React.lazy(() => import('../three/CubeScene'));
 
 /**
  * VisionSection Component
@@ -35,15 +32,6 @@ const VisionSection: React.FC = () => {
       id="vision"
       className="bg-gradient-to-br from-bg-900 to-bg-800 relative overflow-hidden"
     >
-      {/* 3D Cube Background Layer */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <ErrorBoundary>
-          <Suspense fallback={null}>
-            <CubeScene className="opacity-30" />
-          </Suspense>
-        </ErrorBoundary>
-      </div>
-
       {/* Content Layer */}
       <motion.div
         className="max-w-3xl mx-auto text-center relative z-10"

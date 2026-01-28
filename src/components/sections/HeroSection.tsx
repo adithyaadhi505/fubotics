@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { InteractiveRobotSpline } from '@/components/ui/interactive-3d-robot';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
 /**
  * HeroSection Component
@@ -106,10 +107,25 @@ const HeroSection: React.FC = () => {
     >
       {/* Interactive 3D Robot Background */}
       <div className="absolute inset-0 z-0">
-        <InteractiveRobotSpline
-          scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
-          className="w-full h-full"
-        />
+        <ErrorBoundary fallback={
+          <div className="w-full h-full bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900">
+            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className="absolute w-[700px] h-[700px] bg-gradient-to-br from-accent-400/50 to-accent-300/30 rounded-full blur-3xl animate-pulse" 
+                     style={{ animationDuration: '4s' }} />
+                <div className="absolute w-[600px] h-[600px] bg-gradient-to-tl from-accent-300/40 to-accent-200/25 rounded-full blur-3xl animate-pulse" 
+                     style={{ animationDuration: '6s', animationDelay: '1s' }} />
+                <div className="absolute w-[650px] h-[650px] bg-gradient-to-br from-accent-500/35 to-accent-400/20 rounded-full blur-3xl animate-pulse" 
+                     style={{ animationDuration: '5s', animationDelay: '2s' }} />
+              </div>
+            </div>
+          </div>
+        }>
+          <InteractiveRobotSpline
+            scene="https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
+            className="w-full h-full"
+          />
+        </ErrorBoundary>
       </div>
 
       {/* Dark overlay for better text readability */}

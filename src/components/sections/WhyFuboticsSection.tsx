@@ -64,13 +64,63 @@ const WhyFuboticsSection: React.FC = () => {
       </SectionTitle>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {features.map((feature, idx) => (
+        {features.map((feature, idx) => {
+          // Different animation for each card based on index
+          const getAnimationProps = (index: number) => {
+            switch(index) {
+              case 0: // First card - slide from left
+                return {
+                  initial: { opacity: 0, x: -120, y: 0, scale: 0.9, rotateY: -15 },
+                  animate: { opacity: 1, x: 0, y: 0, scale: 1, rotateY: 0 },
+                  exit: { opacity: 0, x: -120, y: 0, scale: 0.9, rotateY: -15 }
+                };
+              case 1: // Second card - slide from bottom
+                return {
+                  initial: { opacity: 0, x: 0, y: 120, scale: 0.85 },
+                  animate: { opacity: 1, x: 0, y: 0, scale: 1 },
+                  exit: { opacity: 0, x: 0, y: 120, scale: 0.85 }
+                };
+              case 2: // Third card - slide from right
+                return {
+                  initial: { opacity: 0, x: 120, y: 0, scale: 0.9, rotateY: 15 },
+                  animate: { opacity: 1, x: 0, y: 0, scale: 1, rotateY: 0 },
+                  exit: { opacity: 0, x: 120, y: 0, scale: 0.9, rotateY: 15 }
+                };
+              default:
+                return {
+                  initial: { opacity: 0, y: 30, scale: 0.9 },
+                  animate: { opacity: 1, y: 0, scale: 1 },
+                  exit: { opacity: 0, y: 30, scale: 0.9 }
+                };
+            }
+          };
+
+          const animationProps = getAnimationProps(idx);
+
+          return (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: idx * 0.2 }}
+            initial={animationProps.initial}
+            whileInView={animationProps.animate}
+            exit={animationProps.exit}
+            viewport={{ once: false, amount: 0.2, margin: "-80px" }}
+            transition={{ 
+              duration: 1,
+              delay: idx * 0.15,
+              ease: [0.34, 1.56, 0.64, 1],
+              type: "spring",
+              stiffness: 80,
+              damping: 18,
+              mass: 0.8
+            }}
+            whileHover={{ 
+              y: -8,
+              scale: 1.02,
+              transition: { 
+                duration: 0.3,
+                ease: "easeOut"
+              }
+            }}
           >
             <Card
               delay={idx * 0.2}
@@ -141,7 +191,8 @@ const WhyFuboticsSection: React.FC = () => {
               )}
             </Card>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
     </SectionContainer>
   );

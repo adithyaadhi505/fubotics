@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { SectionContainer, SectionTitle } from '../ui/Section';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
+import ErrorBoundary from '../ui/ErrorBoundary';
+
+const CubeScene = React.lazy(() => import('../three/CubeScene'));
 
 /**
  * ContactSection Component
@@ -85,8 +88,19 @@ const ContactSection: React.FC = () => {
 
   return (
     <div ref={sectionRef}>
-      <SectionContainer id="contact" className="bg-bg-900">
-        <SectionTitle accent="Touch">Get in </SectionTitle>
+      <SectionContainer id="contact" className="bg-bg-900 relative overflow-hidden">
+        {/* 3D Cube Background Layer */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <ErrorBoundary>
+            <Suspense fallback={null}>
+              <CubeScene className="opacity-40" />
+            </Suspense>
+          </ErrorBoundary>
+        </div>
+
+        {/* Content Layer */}
+        <div className="relative z-10">
+          <SectionTitle accent="Touch">Get in </SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Contact Options */}
@@ -326,7 +340,8 @@ const ContactSection: React.FC = () => {
           </Card>
         </motion.div>
       </div>
-    </SectionContainer>
+        </div>
+      </SectionContainer>
 
     {/* Floating Recharge Button */}
     <a

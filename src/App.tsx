@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroSection from './components/sections/HeroSection';
@@ -7,12 +8,14 @@ import WhyFuboticsSection from './components/sections/WhyFuboticsSection';
 import VisionSection from './components/sections/VisionSection';
 import ContactSection from './components/sections/ContactSection';
 import ChatBot from './components/ui/ChatBot';
+import FacadeCleaning from './pages/FacadeCleaning';
+import DuctCleaning from './pages/DuctCleaning';
 
 /**
- * App Component
- * Main application component that orchestrates all sections and navigation
+ * HomePage Component
+ * Main landing page with all sections
  */
-const App: React.FC = () => {
+const HomePage: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll events for header styling
@@ -53,6 +56,37 @@ const App: React.FC = () => {
       {/* ChatBot */}
       <ChatBot />
     </div>
+  );
+};
+
+/**
+ * ScrollToTop Component
+ * Scrolls to top on route change
+ */
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+/**
+ * App Component
+ * Main application component with routing
+ */
+const App: React.FC = () => {
+  return (
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/facade-cleaning" element={<FacadeCleaning />} />
+        <Route path="/duct-cleaning" element={<DuctCleaning />} />
+      </Routes>
+    </Router>
   );
 };
 

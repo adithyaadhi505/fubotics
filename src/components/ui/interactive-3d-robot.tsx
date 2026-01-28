@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 
 // Lazy load Spline component for better performance
 const Spline = lazy(() => import('@splinetool/react-spline'));
@@ -9,6 +9,19 @@ interface InteractiveRobotSplineProps {
   /** Additional CSS classes */
   className?: string;
 }
+
+/**
+ * Check if WebGL is available
+ */
+const isWebGLAvailable = () => {
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    return !!gl;
+  } catch (e) {
+    return false;
+  }
+};
 
 /**
  * Aggressively removes Spline watermark elements from DOM
@@ -58,6 +71,13 @@ export function InteractiveRobotSpline({
   className 
 }: InteractiveRobotSplineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hasWebGL, setHasWebGL] = useState<boolean | null>(null);
+  const [loadError, setLoadError] = useState(false);
+
+  useEffect(() => {
+    // Check WebGL availability
+    setHasWebGL(isWebGLAvailable());
+  }, []);
 
   useEffect(() => {
     // Remove watermark immediately
@@ -89,7 +109,51 @@ export function InteractiveRobotSpline({
     setTimeout(removeWatermark, 100);
     setTimeout(removeWatermark, 500);
     setTimeout(removeWatermark, 1000);
+    setLoadError(false);
   };
+
+  const handleError = () => {
+    setLoadError(true);
+  };
+
+  // Show fallback if WebGL is not available or load error
+  if (hasWebGL === false || loadError) {
+    return (
+      <div 
+        ref={containerRef}
+        className={`relative ${className}`}
+      >
+        {/* Animated gradient fallback */}
+        <div className="absolute inset-0 bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900">
+          <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* Multiple animated gradient blobs */}
+              <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-accent-400/40 to-accent-300/20 rounded-full blur-3xl animate-pulse" 
+                   style={{ animationDuration: '4s' }} />
+              <div className="absolute w-[500px] h-[500px] bg-gradient-to-tl from-accent-300/30 to-accent-200/20 rounded-full blur-3xl animate-pulse" 
+                   style={{ animationDuration: '6s', animationDelay: '1s' }} />
+              <div className="absolute w-[550px] h-[550px] bg-gradient-to-br from-accent-500/25 to-accent-400/15 rounded-full blur-3xl animate-pulse" 
+                   style={{ animationDuration: '5s', animationDelay: '2s' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show loading state
+  if (hasWebGL === null) {
+    return (
+      <div 
+        ref={containerRef}
+        className={`relative ${className}`}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 flex items-center justify-center">
+          <div className="w-96 h-96 bg-gradient-to-br from-accent-400/30 to-accent-300/15 rounded-full blur-3xl animate-pulse" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -102,28 +166,9 @@ export function InteractiveRobotSpline({
       <Suspense
       fallback={
         <div 
-          className={`w-full h-full flex items-center justify-center bg-gray-900 text-white ${className}`}
+          className={`w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 ${className}`}
         >
-          <svg 
-            className="animate-spin h-5 w-5 text-white mr-3" 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24"
-          >
-            <circle 
-              className="opacity-25" 
-              cx="12" 
-              cy="12" 
-              r="10" 
-              stroke="currentColor" 
-              strokeWidth="4"
-            />
-            <path 
-              className="opacity-75" 
-              fill="currentColor" 
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l2-2.647z"
-            />
-          </svg>
+          <div className="w-96 h-96 bg-gradient-to-br from-accent-400/30 to-accent-300/15 rounded-full blur-3xl animate-pulse" />
         </div>
       }
     >
@@ -131,6 +176,7 @@ export function InteractiveRobotSpline({
         scene={scene}
         className={className}
         onLoad={handleLoad}
+        onError={handleError}
       />
     </Suspense>
 

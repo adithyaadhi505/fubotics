@@ -40,10 +40,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="flex items-center justify-center p-8">
-            <p className="text-accent-200 text-sm">
-              Unable to load 3D content
-            </p>
+          <div className="flex items-center justify-center p-8 w-full h-full">
+            <div className="relative">
+              <div className="w-96 h-96 bg-gradient-to-br from-accent-400/40 to-accent-300/25 rounded-full blur-3xl animate-pulse" />
+            </div>
           </div>
         )
       );

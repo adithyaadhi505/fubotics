@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SectionContainer, SectionTitle } from '../ui/Section';
 import Card from '../ui/Card';
 
@@ -27,6 +28,7 @@ interface SolutionCardProps {
  * Individual solution card with smooth scroll-based animation and hover expansion
  */
 const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
+  const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const isInView = useInView(cardRef, { 
@@ -76,6 +78,8 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
       <div 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => navigate(solution.id === 'facade' ? '/facade-cleaning' : '/duct-cleaning')}
+        className="cursor-pointer"
       >
         <Card
           delay={0}

@@ -20,36 +20,32 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavClick }) => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass shadow-glass-lg py-2' : 'bg-transparent py-4'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass shadow-glass-lg py-2' : 'bg-transparent py-4'
+        }`}
       initial={{ y: -100 }}
-      animate={{ 
+      animate={{
         y: 0,
         scale: scrolled ? 0.95 : 1,
       }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
-      <div className={`max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-500 ${
-        scrolled ? 'py-1' : 'py-2'
-      }`}>
+      <div className={`max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-500 ${scrolled ? 'py-1' : 'py-2'
+        }`}>
         {/* Logo */}
         <motion.div
           className="flex items-center gap-1 cursor-pointer"
           onClick={() => handleNavClick('hero')}
           whileHover={{ scale: 1.05 }}
         >
-          <span className={`font-bold gradient-text transition-all duration-500 ${
-            scrolled ? 'text-xl' : 'text-2xl'
-          }`}>Fubotics</span>
+          <span className={`font-bold gradient-text transition-all duration-500 ${scrolled ? 'text-xl' : 'text-2xl'
+            }`}>Fubotics</span>
         </motion.div>
 
         {/* Desktop CTA Button */}
         <motion.button
           onClick={() => handleNavClick('contact')}
-          className={`hidden md:block px-6 bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-xl font-semibold transition-all duration-500 ${
-            scrolled ? 'py-1.5 text-sm' : 'py-2 text-base'
-          }`}
+          className={`hidden md:block px-6 bg-white/10 border border-white/20 text-white rounded-xl font-semibold transition-all duration-500 hover:bg-white hover:text-black hover:shadow-glow-white ${scrolled ? 'py-1.5 text-sm' : 'py-2 text-base'
+            }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -83,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavClick }) => {
         <nav className="flex flex-col gap-4 px-4 py-6">
           <motion.button
             onClick={() => handleNavClick('contact')}
-            className="w-full px-6 py-3 bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-xl font-semibold hover:shadow-glow-tan-lg transition-all duration-300 mt-4"
+            className="w-full px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white hover:text-black hover:shadow-glow-white transition-all duration-300 mt-4"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

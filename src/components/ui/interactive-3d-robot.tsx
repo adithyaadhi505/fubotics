@@ -42,9 +42,9 @@ const removeWatermark = () => {
     const elements = document.querySelectorAll(selector);
     elements.forEach(el => {
       const element = el as HTMLElement;
-      if (element.textContent?.toLowerCase().includes('spline') || 
-          element.innerHTML?.toLowerCase().includes('spline') ||
-          element.outerHTML?.toLowerCase().includes('spline')) {
+      if (element.textContent?.toLowerCase().includes('spline') ||
+        element.innerHTML?.toLowerCase().includes('spline') ||
+        element.outerHTML?.toLowerCase().includes('spline')) {
         element.remove();
       }
     });
@@ -66,9 +66,9 @@ const removeWatermark = () => {
  * @param scene - URL to the Spline scene file
  * @param className - Additional Tailwind classes for styling
  */
-export function InteractiveRobotSpline({ 
-  scene, 
-  className 
+export function InteractiveRobotSpline({
+  scene,
+  className
 }: InteractiveRobotSplineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasWebGL, setHasWebGL] = useState<boolean | null>(null);
@@ -119,7 +119,7 @@ export function InteractiveRobotSpline({
   // Show fallback if WebGL is not available or load error
   if (hasWebGL === false || loadError) {
     return (
-      <div 
+      <div
         ref={containerRef}
         className={`relative ${className}`}
       >
@@ -128,12 +128,12 @@ export function InteractiveRobotSpline({
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
             <div className="relative w-full h-full flex items-center justify-center">
               {/* Multiple animated gradient blobs */}
-              <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-accent-400/40 to-accent-300/20 rounded-full blur-3xl animate-pulse" 
-                   style={{ animationDuration: '4s' }} />
-              <div className="absolute w-[500px] h-[500px] bg-gradient-to-tl from-accent-300/30 to-accent-200/20 rounded-full blur-3xl animate-pulse" 
-                   style={{ animationDuration: '6s', animationDelay: '1s' }} />
-              <div className="absolute w-[550px] h-[550px] bg-gradient-to-br from-accent-500/25 to-accent-400/15 rounded-full blur-3xl animate-pulse" 
-                   style={{ animationDuration: '5s', animationDelay: '2s' }} />
+              <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-accent-400/40 to-accent-300/20 rounded-full blur-3xl animate-pulse"
+                style={{ animationDuration: '4s' }} />
+              <div className="absolute w-[500px] h-[500px] bg-gradient-to-tl from-accent-300/30 to-accent-200/20 rounded-full blur-3xl animate-pulse"
+                style={{ animationDuration: '6s', animationDelay: '1s' }} />
+              <div className="absolute w-[550px] h-[550px] bg-gradient-to-br from-accent-500/25 to-accent-400/15 rounded-full blur-3xl animate-pulse"
+                style={{ animationDuration: '5s', animationDelay: '2s' }} />
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ export function InteractiveRobotSpline({
   // Show loading state
   if (hasWebGL === null) {
     return (
-      <div 
+      <div
         ref={containerRef}
         className={`relative ${className}`}
       >
@@ -156,32 +156,32 @@ export function InteractiveRobotSpline({
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className={`relative ${className}`} 
-      style={{ 
-        filter: 'hue-rotate(260deg) saturate(1.5) brightness(1.3) contrast(1.15)'
+      className={`relative ${className}`}
+      style={{
+        filter: 'grayscale(100%) contrast(1.2) brightness(1.2)'
       }}
     >
       <Suspense
-      fallback={
-        <div 
-          className={`w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 ${className}`}
-        >
-          <div className="w-96 h-96 bg-gradient-to-br from-accent-400/30 to-accent-300/15 rounded-full blur-3xl animate-pulse" />
-        </div>
-      }
-    >
-      <Spline
-        scene={scene}
-        className={className}
-        onLoad={handleLoad}
-        onError={handleError}
-      />
-    </Suspense>
+        fallback={
+          <div
+            className={`w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 ${className}`}
+          >
+            <div className="w-96 h-96 bg-gradient-to-br from-accent-400/30 to-accent-300/15 rounded-full blur-3xl animate-pulse" />
+          </div>
+        }
+      >
+        <Spline
+          scene={scene}
+          className={className}
+          onLoad={handleLoad}
+          onError={handleError}
+        />
+      </Suspense>
 
       {/* Fubotics branding overlay to cover watermark */}
-      <div 
+      <div
         className="absolute bottom-2 right-2 z-[9999] pointer-events-none select-none"
         style={{
           background: 'linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%)',
@@ -197,7 +197,7 @@ export function InteractiveRobotSpline({
           justifyContent: 'center'
         }}
       >
-        <span 
+        <span
           style={{
             background: 'linear-gradient(135deg, #f5f3f0 0%, #d4c4b3 100%)',
             WebkitBackgroundClip: 'text',
@@ -215,7 +215,7 @@ export function InteractiveRobotSpline({
           Fubotics
         </span>
       </div>
-      
+
       {/* Aggressive watermark hiding styles */}
       <style>{`
         /* Hide all potential watermark elements */

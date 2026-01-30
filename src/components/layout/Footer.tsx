@@ -59,7 +59,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <button
                   key={idx}
                   onClick={() => link.modal ? openModal(link.modal.title, link.modal.content) : undefined}
-                  className="hover:text-accent-blue transition-colors duration-300 text-left md:text-center underline"
+                  className="hover:text-white transition-colors duration-300 text-left md:text-center underline"
                 >
                   {link.label}
                 </button>

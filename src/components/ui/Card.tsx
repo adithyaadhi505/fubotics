@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({
   animated = true,
   delay = 0,
 }) => {
-  const baseStyles = 'glass rounded-2xl p-8 transition-all duration-300';
+  const baseStyles = 'glass border border-white/10 rounded-2xl p-8 transition-all duration-300 bg-black/20 backdrop-blur-md';
 
   const variants = {
     hidden: { opacity: 0, y: 30 },
@@ -37,8 +37,8 @@ const Card: React.FC<CardProps> = ({
   const hoverVariants = {
     hover: {
       y: -5,
-      boxShadow: '0 0 10px 1px rgba(165, 42, 42, 0.15), 0 0 18px 2px rgba(205, 133, 63, 0.12)',
-      borderColor: 'rgba(205, 133, 63, 0.3)',
+      boxShadow: '0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05)',
+      borderColor: 'rgba(255, 255, 255, 0.3)',
     },
   };
 

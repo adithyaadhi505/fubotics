@@ -7,6 +7,7 @@ import Button from '../components/ui/Button';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 
 const CubeScene = React.lazy(() => import('../components/three/CubeScene'));
+const MeteorShower = React.lazy(() => import('../components/ui/MeteorShower'));
 
 /**
  * DuctCleaning Page
@@ -104,7 +105,7 @@ const DuctCleaning: React.FC = () => {
       {/* Back Arrow Button - Fixed Top Left */}
       <motion.button
         onClick={() => navigate('/')}
-        className="fixed top-24 left-4 md:left-8 z-40 p-3 glass rounded-full hover:shadow-glow-tan-lg transition-all duration-300 group"
+        className="fixed top-24 left-4 md:left-8 z-40 p-3 glass rounded-full hover:shadow-glow-white transition-all duration-300 group"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
@@ -128,6 +129,11 @@ const DuctCleaning: React.FC = () => {
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-bg-900/80 via-bg-900/60 to-bg-900 z-1" />
 
+        {/* Meteor Shower falling in background - Always visible */}
+        <Suspense fallback={null}>
+          <MeteorShower />
+        </Suspense>
+
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -135,7 +141,7 @@ const DuctCleaning: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Breathe Easier.<br/>
+              Breathe Easier.<br />
               <span className="gradient-text">Live Smarter.</span>
             </h1>
             <p className="text-xl md:text-2xl text-accent-200 mb-12 max-w-4xl mx-auto">
@@ -162,7 +168,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Video Section */}
-      <section className="py-12 px-4 md:px-8 bg-bg-800">
+      <section className="py-12 px-4 md:px-8 bg-transparent">
         <div className="max-w-5xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -178,7 +184,7 @@ const DuctCleaning: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="aspect-video bg-bg-700 rounded-2xl overflow-hidden border border-accent-700/30"
+            className="aspect-video bg-black/40 rounded-2xl overflow-hidden border border-white/10"
           >
             <iframe
               src="https://drive.google.com/file/d/1jSWNjF0esbCthvvSGS164t68imzjqHBH/preview"
@@ -191,7 +197,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Why Clean Your Ducts Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-bg-900">
+      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -204,7 +210,7 @@ const DuctCleaning: React.FC = () => {
               Why Clean <span className="text-accent-200">Your Ducts?</span>
             </h2>
             <p className="text-lg text-accent-300 max-w-4xl mx-auto leading-relaxed">
-              Hidden inside your walls, duct systems quietly circulate air — but over time, they become loaded with dust, mold, and allergens. 
+              Hidden inside your walls, duct systems quietly circulate air — but over time, they become loaded with dust, mold, and allergens.
               Robotic cleaning improves air quality, reduces health risks, and optimizes your AC's energy efficiency.
             </p>
           </motion.div>
@@ -217,7 +223,7 @@ const DuctCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-bg-800 rounded-2xl p-8 border border-accent-700/30 hover:border-accent-500/50 transition-all"
+                className="glass rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all hover:shadow-glow-white"
               >
                 <h3 className="text-2xl font-bold text-accent-100 mb-4">
                   {item.title}
@@ -232,7 +238,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Before/After Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-bg-800">
+      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -252,7 +258,7 @@ const DuctCleaning: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-bg-900 rounded-2xl p-8 border border-accent-700/30"
+              className="glass rounded-2xl p-8 border border-white/10"
             >
               <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
                 <span className="text-accent-400 text-sm">Before Cleaning</span>
@@ -265,7 +271,7 @@ const DuctCleaning: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-bg-900 rounded-2xl p-8 border border-accent-500/50"
+              className="glass rounded-2xl p-8 border border-white/20"
             >
               <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
                 <span className="text-accent-200 text-sm">After Cleaning</span>
@@ -277,7 +283,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Our Process Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-bg-900">
+      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -299,9 +305,9 @@ const DuctCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-bg-800 rounded-2xl p-6 border border-accent-700/30"
+                className="glass rounded-2xl p-6 border border-white/10"
               >
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-300 to-accent-400 flex items-center justify-center text-bg-900 font-bold text-xl mb-4">
+                <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xl mb-4">
                   {idx + 1}
                 </div>
                 <h3 className="text-xl font-bold text-accent-100 mb-3">
@@ -317,7 +323,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Additional Services Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-bg-800">
+      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -339,7 +345,7 @@ const DuctCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-bg-900 rounded-2xl p-6 border border-accent-700/30 hover:border-accent-500/50 transition-all"
+                className="glass rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all hover:shadow-glow-white"
               >
                 <h3 className="text-xl font-bold text-accent-100 mb-3">
                   {service.title}
@@ -354,7 +360,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-bg-900">
+      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -363,7 +369,7 @@ const DuctCleaning: React.FC = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Cleaner ducts. Safer air.<br/>
+              Cleaner ducts. Safer air.<br />
               <span className="text-accent-200">Smarter living.</span>
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
@@ -391,7 +397,7 @@ const DuctCleaning: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 glass p-3 rounded-full shadow-lg hover:shadow-glow-tan-lg transition-all duration-300 z-40 group"
+          className="fixed bottom-8 right-8 glass p-3 rounded-full shadow-lg hover:shadow-glow-white transition-all duration-300 z-40 group"
           title="Back to Top"
         >
           <svg className="w-6 h-6 text-accent-200 group-hover:text-accent-100 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -30,11 +30,11 @@ const VisionSection: React.FC = () => {
   return (
     <SectionContainer
       id="vision"
-      className="bg-gradient-to-br from-bg-900 to-bg-800 relative overflow-hidden"
+      className="bg-transparent relative overflow-hidden"
     >
       {/* Content Layer */}
       <motion.div
-        className="max-w-3xl mx-auto text-center relative z-10"
+        className="max-w-4xl mx-auto text-center relative z-10 glass border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl bg-black/20 backdrop-blur-xl"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -72,7 +72,7 @@ const VisionSection: React.FC = () => {
         >
           {/* Decorative Line */}
           <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-16 h-1 bg-gradient-to-r from-transparent via-accent-300 to-transparent"
+            className="absolute left-1/2 transform -translate-x-1/2 -top-6 w-16 h-1 bg-gradient-to-r from-transparent via-white to-transparent"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
@@ -103,7 +103,7 @@ const VisionSection: React.FC = () => {
           </p>
           <motion.a
             href="#contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 font-semibold rounded-xl hover:shadow-glow-tan-lg transition-all duration-300"
+            className="inline-block px-8 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-xl hover:bg-white hover:text-black hover:shadow-glow-white transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

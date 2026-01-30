@@ -12,7 +12,7 @@ import { KernelSize } from 'postprocessing';
  * Integrated into Solutions section for visual enhancement
  */
 
-interface ShapeProps {}
+interface ShapeProps { }
 
 const Shape: React.FC<ShapeProps> = () => {
   const meshRef = useRef<Mesh>(null);
@@ -39,7 +39,7 @@ const Shape: React.FC<ShapeProps> = () => {
           metalness={1}
           clearcoat={1}
           clearcoatRoughness={0.1}
-          color="#483f37"
+          color="#222222"
         />
 
         <Geometry>
@@ -56,8 +56,8 @@ const Shape: React.FC<ShapeProps> = () => {
       <mesh ref={innerSphereRef}>
         <sphereGeometry args={[1.2, 32, 32]} />
         <meshPhysicalMaterial
-          color="#d4c4b3"
-          emissive="#c0a598"
+          color="#dddddd"
+          emissive="#555555"
           emissiveIntensity={2.5}
           roughness={0.2}
           metalness={0.3}
@@ -70,16 +70,16 @@ const Shape: React.FC<ShapeProps> = () => {
 const Environment: React.FC = () => {
   return (
     <>
-      <directionalLight position={[-5, 5, -5]} intensity={0.8} color="#d4c4b3" />
+      <directionalLight position={[-5, 5, -5]} intensity={0.8} color="#ffffff" />
 
-      <directionalLight position={[0, -5, 10]} intensity={1.2} color="#e8e3dc" />
+      <directionalLight position={[0, -5, 10]} intensity={1.2} color="#eeeeee" />
 
-      <ambientLight intensity={0.8} color="#483f37" />
+      <ambientLight intensity={0.8} color="#222222" />
 
       <pointLight
         position={[8, 3, 8]}
         intensity={0.9}
-        color="#c0a598"
+        color="#888888"
         distance={20}
       />
 
@@ -90,7 +90,7 @@ const Environment: React.FC = () => {
         distance={20}
       />
 
-      <directionalLight position={[0, -10, 0]} intensity={0.6} color="#a8937f" />
+      <directionalLight position={[0, -10, 0]} intensity={0.6} color="#444444" />
     </>
   );
 };

@@ -9,16 +9,16 @@ import ErrorBoundary from '@/components/ui/ErrorBoundary';
  */
 
 const colors = {
-  50: '#f5f3f0',
-  100: '#e8e3dc',
-  200: '#d4c4b3',
-  300: '#c0a598',
-  400: '#a8937f',
-  500: '#907d6b',
-  600: '#786a5c',
-  700: '#60564a',
-  800: '#483f37',
-  900: '#302620',
+  50: '#ffffff',
+  100: '#f5f5f5',
+  200: '#e5e5e5',
+  300: '#d4d4d4',
+  400: '#a3a3a3',
+  500: '#737373',
+  600: '#525252',
+  700: '#404040',
+  800: '#262626',
+  900: '#171717',
 };
 
 const HeroSection: React.FC = () => {
@@ -52,7 +52,9 @@ const HeroSection: React.FC = () => {
     // Word hover effects with glow
     words.forEach((word) => {
       word.addEventListener('mouseenter', () => {
-        word.style.textShadow = '0 0 20px rgba(212, 196, 179, 0.4)';
+        word.addEventListener('mouseenter', () => {
+          word.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.4)';
+        });
       });
       word.addEventListener('mouseleave', () => {
         word.style.textShadow = 'none';
@@ -67,7 +69,7 @@ const HeroSection: React.FC = () => {
       ripple.style.top = e.clientY + 'px';
       ripple.style.width = '4px';
       ripple.style.height = '4px';
-      ripple.style.background = 'rgba(212, 196, 179, 0.5)';
+      ripple.style.background = 'rgba(255, 255, 255, 0.3)';
       ripple.style.borderRadius = '50%';
       ripple.style.transform = 'translate(-50%, -50%)';
       ripple.style.pointerEvents = 'none';
@@ -103,7 +105,7 @@ const HeroSection: React.FC = () => {
   return (
     <div
       id="hero"
-      className="min-h-screen bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900 text-accent-100 font-sans overflow-hidden relative w-full"
+      className="min-h-screen text-accent-100 font-sans overflow-hidden relative w-full"
     >
       {/* Interactive 3D Robot Background */}
       <div className="absolute inset-0 z-0">
@@ -111,12 +113,12 @@ const HeroSection: React.FC = () => {
           <div className="w-full h-full bg-gradient-to-br from-bg-900 via-bg-800 to-bg-900">
             <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
               <div className="relative w-full h-full flex items-center justify-center">
-                <div className="absolute w-[700px] h-[700px] bg-gradient-to-br from-accent-400/50 to-accent-300/30 rounded-full blur-3xl animate-pulse" 
-                     style={{ animationDuration: '4s' }} />
-                <div className="absolute w-[600px] h-[600px] bg-gradient-to-tl from-accent-300/40 to-accent-200/25 rounded-full blur-3xl animate-pulse" 
-                     style={{ animationDuration: '6s', animationDelay: '1s' }} />
-                <div className="absolute w-[650px] h-[650px] bg-gradient-to-br from-accent-500/35 to-accent-400/20 rounded-full blur-3xl animate-pulse" 
-                     style={{ animationDuration: '5s', animationDelay: '2s' }} />
+                <div className="absolute w-[700px] h-[700px] bg-gradient-to-br from-accent-400/50 to-accent-300/30 rounded-full blur-3xl animate-pulse"
+                  style={{ animationDuration: '4s' }} />
+                <div className="absolute w-[600px] h-[600px] bg-gradient-to-tl from-accent-300/40 to-accent-200/25 rounded-full blur-3xl animate-pulse"
+                  style={{ animationDuration: '6s', animationDelay: '1s' }} />
+                <div className="absolute w-[650px] h-[650px] bg-gradient-to-br from-accent-500/35 to-accent-400/20 rounded-full blur-3xl animate-pulse"
+                  style={{ animationDuration: '5s', animationDelay: '2s' }} />
               </div>
             </div>
           </div>
@@ -131,47 +133,13 @@ const HeroSection: React.FC = () => {
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-bg-900/60 z-[1]" />
 
-      {/* SVG Grid Background */}
-      <svg className="absolute inset-0 w-full h-full z-[2]" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path
-              d="M 60 0 L 0 0 0 60"
-              fill="none"
-              stroke="rgba(212,196,179,0.06)"
-              strokeWidth="0.5"
-            />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-        {/* Animated grid lines */}
-        <line x1="0" y1="20%" x2="100%" y2="20%" className="grid-line" style={{ animationDelay: '0.5s' }} />
-        <line x1="0" y1="80%" x2="100%" y2="80%" className="grid-line" style={{ animationDelay: '1s' }} />
-        <line x1="20%" y1="0" x2="20%" y2="100%" className="grid-line" style={{ animationDelay: '1.5s' }} />
-        <line x1="80%" y1="0" x2="80%" y2="100%" className="grid-line" style={{ animationDelay: '2s' }} />
-        <line
-          x1="50%"
-          y1="0"
-          x2="50%"
-          y2="100%"
-          className="grid-line"
-          style={{ animationDelay: '2.5s', opacity: 0.05 }}
-        />
-        <line
-          x1="0"
-          y1="50%"
-          x2="100%"
-          y2="50%"
-          className="grid-line"
-          style={{ animationDelay: '3s', opacity: 0.05 }}
-        />
-        {/* Detail dots at corners */}
-        <circle cx="20%" cy="20%" r="2" className="detail-dot" style={{ animationDelay: '3s' }} stroke="rgba(212,196,179,0.6)" fill="rgba(212,196,179,0.4)" strokeWidth="0.5" />
-        <circle cx="80%" cy="20%" r="2" className="detail-dot" style={{ animationDelay: '3.2s' }} stroke="rgba(212,196,179,0.6)" fill="rgba(212,196,179,0.4)" strokeWidth="0.5" />
-        <circle cx="20%" cy="80%" r="2" className="detail-dot" style={{ animationDelay: '3.4s' }} stroke="rgba(212,196,179,0.6)" fill="rgba(212,196,179,0.4)" strokeWidth="0.5" />
-        <circle cx="80%" cy="80%" r="2" className="detail-dot" style={{ animationDelay: '3.6s' }} stroke="rgba(212,196,179,0.6)" fill="rgba(212,196,179,0.4)" strokeWidth="0.5" />
-        <circle cx="50%" cy="50%" r="1.5" className="detail-dot" style={{ animationDelay: '4s' }} stroke="rgba(212,196,179,0.6)" fill="rgba(212,196,179,0.4)" strokeWidth="0.5" />
-      </svg>
+      {/* Tech Overlay Lines */}
+      <div className="absolute inset-0 pointer-events-none z-[2]">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-600/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-600/30 to-transparent" />
+        <div className="absolute top-0 left-0 w-[1px] h-full bg-gradient-to-b from-transparent via-accent-600/30 to-transparent" />
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-accent-600/30 to-transparent" />
+      </div>
 
       {/* Corner accent elements */}
       <div className="corner-element top-8 left-8 z-[3]" style={{ animationDelay: '4s' }}>
@@ -211,7 +179,7 @@ const HeroSection: React.FC = () => {
         <div className="text-center max-w-4xl mx-auto drop-shadow-2xl">
           <h1
             className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight mb-6 drop-shadow-lg"
-            style={{ 
+            style={{
               color: colors[50],
               textShadow: '0 4px 12px rgba(0,0,0,0.5), 0 0 40px rgba(245,243,240,0.1)'
             }}
@@ -233,10 +201,10 @@ const HeroSection: React.FC = () => {
               Do.
             </span>
           </h1>
-          
+
           <p
             className="text-lg md:text-xl lg:text-2xl font-light tracking-wide drop-shadow-md"
-            style={{ 
+            style={{
               color: colors[200],
               textShadow: '0 2px 8px rgba(0,0,0,0.5)'
             }}
@@ -272,7 +240,7 @@ const HeroSection: React.FC = () => {
         ref={gradientRef}
         className="fixed pointer-events-none w-96 h-96 rounded-full blur-3xl transition-all duration-500 ease-out opacity-0 z-[5]"
         style={{
-          background: `radial-gradient(circle, ${colors[500]}0D 0%, transparent 100%)`,
+          background: `radial-gradient(circle, ${colors[50]}0A 0%, transparent 100%)`,
         }}
       />
     </div>

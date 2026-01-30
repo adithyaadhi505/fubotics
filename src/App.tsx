@@ -8,6 +8,7 @@ import WhyFuboticsSection from './components/sections/WhyFuboticsSection';
 import VisionSection from './components/sections/VisionSection';
 import ContactSection from './components/sections/ContactSection';
 import ChatBot from './components/ui/ChatBot';
+import SpaceBackground from './components/ui/SpaceBackground';
 import FacadeCleaning from './pages/FacadeCleaning';
 import DuctCleaning from './pages/DuctCleaning';
 
@@ -39,7 +40,8 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg-900 text-accent-100 overflow-hidden">
+    <div className="min-h-screen bg-bg-900 text-accent-100 overflow-hidden relative">
+      <SpaceBackground />
       {/* Header Navigation */}
       <Header scrolled={scrolled} onNavClick={handleNavigation} />
 
@@ -56,7 +58,7 @@ const HomePage: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 glass p-3 rounded-full shadow-lg hover:shadow-glow-tan-lg transition-all duration-300 z-40 group"
+          className="fixed bottom-8 right-8 glass p-3 rounded-full shadow-lg hover:shadow-glow-white transition-all duration-300 z-40 group"
           title="Back to Top"
         >
           <svg className="w-6 h-6 text-accent-200 group-hover:text-accent-100 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

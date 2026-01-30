@@ -31,8 +31,8 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const isInView = useInView(cardRef, { 
-    once: true, 
+  const isInView = useInView(cardRef, {
+    once: true,
     margin: "-50px",
     amount: 0.2
   });
@@ -46,15 +46,15 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
   // Transform values based on scroll progress
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.5, 1]);
   const x = useTransform(
-    scrollYProgress, 
-    [0, 0.8, 1], 
+    scrollYProgress,
+    [0, 0.8, 1],
     [index === 0 ? -150 : 150, index === 0 ? -30 : 30, 0]
   );
   const y = useTransform(scrollYProgress, [0, 0.8, 1], [150, 50, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.75, 0.9, 1]);
   const rotateZ = useTransform(
-    scrollYProgress, 
-    [0, 0.5, 1], 
+    scrollYProgress,
+    [0, 0.5, 1],
     [index === 0 ? -8 : 8, index === 0 ? -3 : 3, 0]
   );
 
@@ -75,7 +75,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
         mass: 1
       }}
     >
-      <div 
+      <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => navigate(solution.id === 'facade' ? '/facade-cleaning' : '/duct-cleaning')}
@@ -90,12 +90,12 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
           {index === 0 && (
             <>
               {/* Dark gradient overlay for text readability */}
-              <div 
+              <div
                 className="absolute inset-0 bg-gradient-to-r from-bg-900 via-bg-900/95 to-transparent"
                 style={{ zIndex: 1 }}
               />
               {/* Background Image */}
-              <div 
+              <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage: 'url(/card1.png)',
@@ -112,12 +112,12 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
           {index === 1 && (
             <>
               {/* Dark gradient overlay for text readability */}
-              <div 
+              <div
                 className="absolute inset-0 bg-gradient-to-r from-bg-900 via-bg-900/95 to-transparent"
                 style={{ zIndex: 1 }}
               />
               {/* Background Image */}
-              <div 
+              <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage: 'url(/card2.png)',
@@ -129,13 +129,13 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
               />
             </>
           )}
-          
+
           {/* Content Overlay */}
           <div className="relative z-10 flex flex-col justify-between h-full">
             {/* Solution Icon */}
             <div className="w-14 h-14 flex items-center justify-center mb-6">
               {index === 0 ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
                   <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
                   <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
@@ -145,7 +145,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
                   <path d="M10 18h4"></path>
                 </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                   <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"></path>
                   <path d="M9.6 4.6A2 2 0 1 1 11 8H2"></path>
                   <path d="M12.6 19.4A2 2 0 1 0 14 16H2"></path>
@@ -200,11 +200,11 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution, index }) => {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ 
+              transition={{
                 duration: 0.3,
                 ease: [0.4, 0, 0.2, 1]
               }}
-              className="mt-4 p-6 rounded-2xl border border-accent-700 bg-gradient-to-br from-bg-800/80 to-bg-900/80 shadow-xl"
+              className="mt-4 p-6 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md shadow-xl"
             >
               <h4 className="text-accent-100 font-semibold text-lg mb-4">Challenges</h4>
               <ul className="space-y-3">
@@ -273,7 +273,7 @@ const SolutionsSection: React.FC = () => {
   return (
     <SectionContainer
       id="solutions"
-      className="bg-gradient-to-b from-bg-900 to-bg-800"
+      className="bg-transparent"
     >
       <SectionTitle accent="Solutions">Our </SectionTitle>
 

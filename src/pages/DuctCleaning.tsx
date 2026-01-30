@@ -168,7 +168,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Video Section */}
-      <section className="py-12 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-12 px-4 md:px-8 bg-transparent">
         <div className="max-w-5xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -197,7 +197,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Why Clean Your Ducts Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -238,7 +238,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Before/After Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -283,7 +283,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Our Process Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -323,7 +323,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* Additional Services Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -360,7 +360,7 @@ const DuctCleaning: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -385,8 +385,10 @@ const DuctCleaning: React.FC = () => {
                 size="lg"
                 onClick={() => navigate('/#contact')}
               >
-                Recharge
-                <span className="text-sm">Power up your robots</span>
+                <div className="flex flex-col items-center">
+                  <span>Recharge</span>
+                  <span className="text-xs text-accent-400">Power up your robots</span>
+                </div>
               </Button>
             </div>
           </motion.div>
@@ -410,7 +412,9 @@ const DuctCleaning: React.FC = () => {
       )}
 
       {/* Footer */}
-      <Footer onNavigate={handleNavigation} />
+      <div className="relative z-10">
+        <Footer onNavigate={handleNavigation} />
+      </div>
     </div>
   );
 };

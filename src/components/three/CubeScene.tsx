@@ -56,11 +56,11 @@ const Shape: React.FC<ShapeProps> = () => {
       <mesh ref={innerSphereRef}>
         <sphereGeometry args={[1.2, 32, 32]} />
         <meshPhysicalMaterial
-          color="#dddddd"
-          emissive="#555555"
-          emissiveIntensity={2.5}
-          roughness={0.2}
-          metalness={0.3}
+          color="#ffffff"
+          emissive="#e0eaff"
+          emissiveIntensity={0.8}
+          roughness={0.05}
+          metalness={0.95}
         />
       </mesh>
     </>
@@ -78,15 +78,15 @@ const Environment: React.FC = () => {
 
       <pointLight
         position={[8, 3, 8]}
-        intensity={0.9}
-        color="#888888"
+        intensity={1.0}
+        color="#ffffff" // White
         distance={20}
       />
 
       <pointLight
         position={[-8, 3, -8]}
-        intensity={0.9}
-        color="#d4c4b3"
+        intensity={0.8}
+        color="#c2d1ff" // Soft Blue-White
         distance={20}
       />
 
@@ -100,7 +100,8 @@ const Scene: React.FC = () => {
     <Canvas
       className="w-full h-full"
       camera={{ position: [5, 5, 5], fov: 50 }}
-      gl={{ alpha: true, antialias: true }}
+      dpr={[1, 1.5]} // Limit pixel ratio to max 1.5 for performance
+      gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }} // Disable MSAA, prefer speed
     >
       <Environment />
       <Suspense fallback={null}>
@@ -111,13 +112,7 @@ const Scene: React.FC = () => {
           kernelSize={3}
           luminanceThreshold={0}
           luminanceSmoothing={0.4}
-          intensity={1.2}
-        />
-        <Bloom
-          kernelSize={KernelSize.HUGE}
-          luminanceThreshold={0}
-          luminanceSmoothing={0}
-          intensity={0.8}
+          intensity={1.0} // Single pass, moderate intensity
         />
       </EffectComposer>
     </Canvas>

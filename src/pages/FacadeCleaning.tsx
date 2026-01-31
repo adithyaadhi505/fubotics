@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 
 const CubeScene = React.lazy(() => import('../components/three/CubeScene'));
@@ -12,6 +13,7 @@ const MeteorShower = React.lazy(() => import('../components/ui/MeteorShower'));
 /**
  * FacadeCleaning Page
  * Robotic facade cleaning service page
+ * Note: Back button removed for cleaner UI
  */
 const FacadeCleaning: React.FC = () => {
   const navigate = useNavigate();
@@ -98,24 +100,16 @@ const FacadeCleaning: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-bg-900 text-accent-100">
+    <div className="min-h-screen bg-bg-900 text-accent-100 relative selection:bg-accent-500/30">
+      {/* Global Meteor Shower Background */}
+      <Suspense fallback={null}>
+        <MeteorShower className="opacity-80 z-0" />
+      </Suspense>
+
       {/* Header Navigation */}
       <Header scrolled={scrolled} onNavClick={handleNavigation} />
 
-      {/* Back Arrow Button - Fixed Top Left */}
-      <motion.button
-        onClick={() => navigate('/')}
-        className="fixed top-24 left-4 md:left-8 z-40 p-3 glass rounded-full hover:shadow-glow-white transition-all duration-300 group"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <svg className="w-6 h-6 text-accent-200 group-hover:text-accent-100 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </motion.button>
+      {/* Back Arrow Button Removed */}
 
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
@@ -123,16 +117,14 @@ const FacadeCleaning: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <ErrorBoundary>
             <Suspense fallback={null}>
-              <CubeScene className="opacity-30" />
+              <CubeScene className="opacity-60" />
+              <MeteorShower className="opacity-100 z-10" />
             </Suspense>
           </ErrorBoundary>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-900/80 via-bg-900/60 to-bg-900 z-1" />
 
-        {/* Meteor Shower falling in background - Always visible */}
-        <Suspense fallback={null}>
-          <MeteorShower />
-        </Suspense>
+        {/* Reduced overlay opacity to make animations visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-900/40 via-bg-900/20 to-bg-900 z-1" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 text-center py-20">
           <motion.div
@@ -186,14 +178,16 @@ const FacadeCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="glass rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all hover:shadow-glow-white"
               >
-                <h3 className="text-2xl font-bold text-accent-100 mb-4">
-                  {item.title}
-                </h3>
-                <p className="text-accent-300 leading-relaxed">
-                  {item.description}
-                </p>
+                <Card className="h-full relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
+                  <h3 className="text-2xl font-bold text-accent-100 mb-4">
+                    {item.title}
+                  </h3>
+                  <p className="text-accent-300 leading-relaxed">
+                    {item.description}
+                  </p>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -221,12 +215,14 @@ const FacadeCleaning: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="glass rounded-2xl p-8 border border-white/10"
             >
-              <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                <span className="text-accent-400 text-sm">Before Cleaning</span>
-              </div>
-              <h3 className="text-2xl font-bold text-accent-300 text-center">Stained & Weathered</h3>
+              <Card className="h-full relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
+                  <span className="text-accent-400 text-sm">Before Cleaning</span>
+                </div>
+                <h3 className="text-2xl font-bold text-accent-300 text-center">Stained & Weathered</h3>
+              </Card>
             </motion.div>
 
             <motion.div
@@ -234,12 +230,14 @@ const FacadeCleaning: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="glass rounded-2xl p-8 border border-white/20"
             >
-              <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                <span className="text-accent-200 text-sm">After Cleaning</span>
-              </div>
-              <h3 className="text-2xl font-bold text-accent-200 text-center">Crystal Clear</h3>
+              <Card className="h-full relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
+                  <span className="text-accent-200 text-sm">After Cleaning</span>
+                </div>
+                <h3 className="text-2xl font-bold text-accent-200 text-center">Crystal Clear</h3>
+              </Card>
             </motion.div>
           </div>
         </div>
@@ -268,17 +266,19 @@ const FacadeCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="glass rounded-2xl p-6 border border-white/10"
               >
-                <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xl mb-4">
-                  {idx + 1}
-                </div>
-                <h3 className="text-xl font-bold text-accent-100 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-accent-300 text-sm">
-                  {step.description}
-                </p>
+                <Card className="h-full relative overflow-hidden group">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
+                  <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white font-bold text-xl mb-4">
+                    {idx + 1}
+                  </div>
+                  <h3 className="text-xl font-bold text-accent-100 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-accent-300 text-sm">
+                    {step.description}
+                  </p>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -308,14 +308,16 @@ const FacadeCleaning: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="glass rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all hover:shadow-glow-white"
               >
-                <h3 className="text-xl font-bold text-accent-100 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-accent-300 text-sm">
-                  {service.description}
-                </p>
+                <Card className="h-full relative overflow-hidden group shadow-none hover:shadow-glow-white">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
+                  <h3 className="text-xl font-bold text-accent-100 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-accent-300 text-sm">
+                    {service.description}
+                  </p>
+                </Card>
               </motion.div>
             ))}
           </div>

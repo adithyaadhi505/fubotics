@@ -8,32 +8,33 @@ export default {
     extend: {
       colors: {
         bg: {
-          primary: '#000000', // Pure Black
-          secondary: '#050505', // Almost Black
-          tertiary: '#0a0a0a', // Very Dark Gray
-          900: '#000000',
-          800: '#050505',
+          primary: '#030305', // Deepest Black-Blue
+          secondary: '#080812', // Dark Violet-Black
+          tertiary: '#0F0F1A', // Midnight Violet
+          900: '#030305',
+          800: '#080812',
+          700: '#0F0F1A',
         },
         accent: {
-          50: '#ffffff', // Pure White (Text/Borders)
-          100: '#f5f5f5',
-          200: '#e5e5e5', // High Contrast Gray
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373', // Mid Gray
-          600: '#525252',
-          700: '#404040',
-          800: '#262626', // Dark Gray
-          900: '#171717', // Very Dark Gray
+          50: '#F0F4FF', // Ice Blue
+          100: '#E0E8FF',
+          200: '#C2D1FF',
+          300: '#94B0FF',
+          400: '#5C85FF', // Primary Brand Blue (like in image)
+          500: '#3D5EFF', // Vivid Blue
+          600: '#2E4CFF',
+          700: '#1A29D6',
+          800: '#0A1530', // Deep Blue Text/BG
+          900: '#050A1A',
         },
         text: {
-          primary: '#ffffff',
-          secondary: '#a3a3a3',
-          muted: '#525252',
+          primary: '#FFFFFF',
+          secondary: '#B4C6FF', // Pale Blue-Gray
+          muted: '#6B7A99', // Muted Blue-Gray
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Outfit', 'Inter', 'sans-serif'],
       },
       fontSize: {
         xs: ['12px', '16px'],
@@ -59,13 +60,12 @@ export default {
         '2xl': '20px',
       },
       boxShadow: {
-        'card': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-        'card-lg': '0 12px 48px 0 rgba(0, 0, 0, 0.7)',
-        'glow-cyan': '0 0 20px rgba(255, 255, 255, 0.1)', // Remapped to white glow
-        'glow-blue': '0 0 20px rgba(255, 255, 255, 0.1)', // Remapped to white glow
-        'glow-white': '0 0 25px rgba(255, 255, 255, 0.2)',
-        'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
-        'glass-lg': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+        'card': '0 8px 32px 0 rgba(10, 21, 48, 0.5)',
+        'card-lg': '0 12px 48px 0 rgba(10, 21, 48, 0.7)',
+        'glow-blue': '0 0 25px rgba(92, 133, 255, 0.3)', // Primary Blue Glow
+        'glow-violet': '0 0 25px rgba(124, 58, 237, 0.3)',
+        'glass': '0 4px 30px rgba(0, 0, 0, 0.2)',
+        'glass-lg': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-in-out',

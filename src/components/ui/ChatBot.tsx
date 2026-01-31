@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 /**
- * ChatBot Component - Kiro
+ * ChatBot Component - Fuby
  * Simple menu-driven chatbot
  */
 
@@ -17,7 +17,7 @@ const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 1,
-      text: "Hi! I'm Kiro. How can I help?",
+      text: "Hi! I'm Fuby. How can I help?",
       isBot: true,
       options: [
         "Services",
@@ -94,7 +94,7 @@ const ChatBot: React.FC = () => {
     setMessages([
       {
         id: 1,
-        text: "Hi! I'm Kiro. How can I help?",
+        text: "Hi! I'm Fuby. How can I help?",
         isBot: true,
         options: [
           "Services",
@@ -136,7 +136,7 @@ const ChatBot: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold">Kiro</h3>
+                <h3 className="font-bold">Fuby</h3>
                 <p className="text-xs opacity-90">Your Fubotics Assistant</p>
               </div>
             </div>
@@ -157,11 +157,10 @@ const ChatBot: React.FC = () => {
               <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
                 <div className={`max-w-[80%] ${message.isBot ? '' : 'order-2'}`}>
                   <div
-                    className={`rounded-2xl p-3 ${
-                      message.isBot
-                        ? 'bg-accent-800/30 text-accent-100 rounded-tl-none'
-                        : 'bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-tr-none'
-                    }`}
+                    className={`rounded-2xl p-3 ${message.isBot
+                      ? 'bg-accent-800/30 text-accent-100 rounded-tl-none'
+                      : 'bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-tr-none'
+                      }`}
                   >
                     <p className="text-sm whitespace-pre-line">{message.text}</p>
                   </div>

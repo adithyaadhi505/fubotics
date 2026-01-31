@@ -33,8 +33,8 @@ const MeteorShower: React.FC<{ className?: string }> = ({ className = '' }) => {
                 x: Math.random() * w, // Start anywhere horizontally
                 y: Math.random() * -200 - 100, // Start above screen
                 length: Math.random() * 80 + 20,
-                speed: Math.random() * 2 + 0.5, // Much slower: 0.5 to 2.5
-                opacity: Math.random() * 0.5 + 0.1,
+                speed: Math.random() * 1 + 0.5, // Slower: 0.5 to 1.5
+                opacity: Math.random() * 0.5 + 0.4, // Increased opacity: 0.4 to 0.9
             };
         };
 
@@ -67,8 +67,8 @@ const MeteorShower: React.FC<{ className?: string }> = ({ className = '' }) => {
                 const endY = m.y - m.length;
 
                 const grad = ctx.createLinearGradient(m.x, m.y, endX, endY);
-                grad.addColorStop(0, `rgba(255, 255, 255, ${m.opacity})`);
-                grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                grad.addColorStop(0, `rgba(92, 133, 255, ${m.opacity})`); // Blue head
+                grad.addColorStop(1, 'rgba(124, 58, 237, 0)'); // Violet tail fade
 
                 ctx.strokeStyle = grad;
                 ctx.lineWidth = 1.5;

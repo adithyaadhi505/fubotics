@@ -29,9 +29,9 @@ const Button: React.FC<ButtonProps> = ({
   const baseStyles = 'font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2';
 
   const variantStyles = {
-    primary: 'bg-gradient-to-r from-accent-400 via-accent-300 to-accent-200 text-bg-900 shadow-lg hover:shadow-glow-tan-lg',
+    primary: 'bg-gradient-to-r from-accent-600 via-accent-500 to-accent-400 text-white shadow-lg shadow-glow-blue hover:shadow-glow-violet transition-all duration-300',
     secondary: 'glass text-accent-100 hover:shadow-glass-lg border border-accent-700',
-    outline: 'border-2 border-accent-300 text-accent-200 hover:bg-accent-300 hover:text-bg-900 hover:shadow-glow-tan-lg glass-sm',
+    outline: 'border border-accent-400 text-accent-100 hover:bg-accent-400/10 hover:border-accent-300 hover:shadow-glow-blue glass-sm',
   };
 
   const sizeStyles = {

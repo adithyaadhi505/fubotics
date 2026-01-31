@@ -43,7 +43,7 @@ const SpaceBackground: React.FC = () => {
 
             draw() {
                 if (!ctx) return;
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)'; // White
+                ctx.fillStyle = 'rgba(92, 133, 255, 0.6)'; // Blue-ish
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -61,7 +61,7 @@ const SpaceBackground: React.FC = () => {
 
         const drawConnections = () => {
             if (!ctx) return;
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.strokeStyle = 'rgba(92, 133, 255, 0.15)';
             ctx.lineWidth = 1;
 
             for (let i = 0; i < particles.length; i++) {
@@ -118,7 +118,7 @@ const SpaceBackground: React.FC = () => {
             <div
                 className="absolute inset-0 z-0 opacity-10"
                 style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23333333' stroke-width='1'/%3E%3C/svg%3E")`,
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%233D5EFF' stroke-width='0.5'/%3E%3C/svg%3E")`,
                     backgroundSize: '60px 60px',
                 }}
             />
@@ -127,7 +127,7 @@ const SpaceBackground: React.FC = () => {
             <canvas ref={canvasRef} className="absolute inset-0 z-10" />
 
             {/* Scanning Beam */}
-            <div className="absolute inset-0 z-20 pointer-events-none animate-scan bg-gradient-to-b from-transparent via-white/5 to-transparent h-[200px]" />
+            <div className="absolute inset-0 z-20 pointer-events-none animate-scan bg-gradient-to-b from-transparent via-accent-400/10 to-transparent h-[200px]" />
 
             {/* Vignette */}
             <div className="absolute inset-0 z-30 bg-radial-gradient from-transparent to-bg-900 opacity-80" />

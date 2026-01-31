@@ -4,8 +4,9 @@ import { SectionContainer, SectionTitle } from '../ui/Section';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import ErrorBoundary from '../ui/ErrorBoundary';
+import { LocationMap } from '../ui/LocationMap';
 
-const CubeScene = React.lazy(() => import('../three/CubeScene'));
+
 
 /**
  * ContactSection Component
@@ -89,13 +90,17 @@ const ContactSection: React.FC = () => {
   return (
     <div ref={sectionRef}>
       <SectionContainer id="contact" className="bg-bg-900 relative overflow-hidden">
-        {/* 3D Cube Background Layer */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <ErrorBoundary>
-            <Suspense fallback={null}>
-              <CubeScene className="opacity-40" />
-            </Suspense>
-          </ErrorBoundary>
+        {/* Professional Geometric Background Layer */}
+        <div className="absolute inset-0 pointer-events-none opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent-900/40 via-bg-900 to-transparent" />
+          <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M0 40L40 0H20L0 20M40 40V20L20 40" stroke="rgba(92, 133, 255, 0.1)" strokeWidth="1" fill="none" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+          </svg>
         </div>
 
         {/* Content Layer */}
@@ -180,14 +185,20 @@ const ContactSection: React.FC = () => {
               <br />
               <br />
 
-              {/* Company Address */}
-              <h3 className="text-accent-100 font-semibold mb-3 text-center text-2xl underline">Visit Us</h3>
-              <address className="text-accent-200 not-italic leading-relaxed text-center">
-                Fubotics Private Limited<br />
-                Regus UB City, Level 15, Concorde Tower<br />
-                No. 24, Vittal Mallya Road
-                Bengaluru 560001, India
-              </address>
+              {/* Company Address - Interactive Map */}
+              <div className="pt-4">
+                <LocationMap
+                  location="Fubotics HQ, Bengaluru"
+                  coordinates="12.9628° N, 77.5775° E"
+                  className="w-full flex justify-center"
+                />
+                <address className="text-accent-300 not-italic text-sm text-center mt-6 leading-relaxed">
+                  Fubotics Private Limited<br />
+                  Regus UB City, Level 15, Concorde Tower<br />
+                  No. 24, Vittal Mallya Road<br />
+                  Bengaluru 560001, India
+                </address>
+              </div>
 
             </motion.div>
 

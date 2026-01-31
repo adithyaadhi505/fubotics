@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavClick }) => {
         {/* Desktop CTA Button */}
         <motion.button
           onClick={() => handleNavClick('contact')}
-          className={`hidden md:block px-6 bg-white/10 border border-white/20 text-white rounded-xl font-semibold transition-all duration-500 hover:bg-white hover:text-black hover:shadow-glow-white ${scrolled ? 'py-1.5 text-sm' : 'py-2 text-base'
+          className={`hidden md:block px-6 bg-accent-400/10 border border-accent-400/50 text-accent-50 rounded-full font-semibold transition-all duration-500 hover:bg-accent-400 hover:text-white hover:shadow-glow-blue ${scrolled ? 'py-1.5 text-sm' : 'py-2 text-base'
             }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -79,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavClick }) => {
         <nav className="flex flex-col gap-4 px-4 py-6">
           <motion.button
             onClick={() => handleNavClick('contact')}
-            className="w-full px-6 py-3 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white hover:text-black hover:shadow-glow-white transition-all duration-300 mt-4"
+            className="w-full px-6 py-3 bg-accent-400/10 border border-accent-400/50 text-accent-50 rounded-full font-semibold hover:bg-accent-400 hover:text-white hover:shadow-glow-blue transition-all duration-300 mt-4"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

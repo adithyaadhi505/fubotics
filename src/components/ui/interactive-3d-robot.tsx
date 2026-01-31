@@ -160,7 +160,7 @@ export function InteractiveRobotSpline({
       ref={containerRef}
       className={`relative ${className}`}
       style={{
-        filter: 'grayscale(100%) contrast(1.2) brightness(1.2)'
+        filter: 'hue-rotate(-25deg) brightness(1.3) saturate(0.8) contrast(1.1)' // Lighter, Icy Blue
       }}
     >
       <Suspense
@@ -180,7 +180,19 @@ export function InteractiveRobotSpline({
         />
       </Suspense>
 
-      {/* Fubotics branding overlay to cover watermark */}
+      {/* Lighter Blue Filter on Robot */}
+      <div
+        className="absolute inset-0 pointer-events-none mix-blend-overlay z-[5]"
+        style={{
+          background: 'radial-gradient(circle at 50% 30%, rgba(92, 133, 255, 0.15) 0%, transparent 70%)' // Subtle blue glow overlay
+        }}
+      />
+
+      {/* Light Cone Removed */}
+
+      {/* Floor Mask - Hides the dark 3D plane at the bottom to blend with background */}
+      <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-bg-900 via-bg-900/90 to-transparent pointer-events-none z-[20]" />
+
       <div
         className="absolute bottom-2 right-2 z-[9999] pointer-events-none select-none"
         style={{

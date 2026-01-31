@@ -3,7 +3,8 @@ import { InteractiveRobotSpline } from '@/components/ui/interactive-3d-robot';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
 /**
- * HeroSection Component
+// HeroSection Component
+// Updated: "Robots" (Light) -> "Can Do." (Continuous Gradient)
  * Premium animated hero section with word-by-word animation and interactive 3D robot
  * Features: 3D robot background, Grid overlay, floating elements, mouse-following gradient
  */
@@ -38,8 +39,8 @@ const HeroSection: React.FC = () => {
     const gradient = gradientRef.current;
     function onMouseMove(e: MouseEvent) {
       if (gradient) {
-        gradient.style.left = e.clientX - 192 + 'px';
-        gradient.style.top = e.clientY - 192 + 'px';
+        // Optimized: Use transform for GPU-accelerated movement
+        gradient.style.transform = `translate3d(${e.clientX - 192}px, ${e.clientY - 192}px, 0)`;
         gradient.style.opacity = '1';
       }
     }
@@ -49,17 +50,7 @@ const HeroSection: React.FC = () => {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseleave', onMouseLeave);
 
-    // Word hover effects with glow
-    words.forEach((word) => {
-      word.addEventListener('mouseenter', () => {
-        word.addEventListener('mouseenter', () => {
-          word.style.textShadow = '0 0 20px rgba(255, 255, 255, 0.4)';
-        });
-      });
-      word.addEventListener('mouseleave', () => {
-        word.style.textShadow = 'none';
-      });
-    });
+    // Word hover effects removed as per request
 
     // Click ripple effect
     function onClick(e: MouseEvent) {
@@ -131,7 +122,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-bg-900/60 z-[1]" />
+      <div className="absolute inset-0 bg-bg-900/20 z-[1]" />
 
       {/* Tech Overlay Lines */}
       <div className="absolute inset-0 pointer-events-none z-[2]">
@@ -178,9 +169,9 @@ const HeroSection: React.FC = () => {
         {/* Main headline centered */}
         <div className="text-center max-w-4xl mx-auto drop-shadow-2xl">
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight mb-6 drop-shadow-lg"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight mb-6 drop-shadow-lg"
             style={{
-              color: colors[50],
+              color: colors[50], // Default color for first line
               textShadow: '0 4px 12px rgba(0,0,0,0.5), 0 0 40px rgba(245,243,240,0.1)'
             }}
           >
@@ -191,15 +182,11 @@ const HeroSection: React.FC = () => {
               What
             </span>
             <br />
-            <span className="word" data-delay="300">
-              Robots
-            </span>{' '}
-            <span className="word" data-delay="450">
-              Can
-            </span>{' '}
-            <span className="word" data-delay="600">
-              Do.
+            {/* "Robots" in light/white, "Can Do" gets the gradient */}
+            <span className="word gradient-text" data-delay="450">
+              Robots Can Do.
             </span>
+
           </h1>
 
           <p
@@ -238,7 +225,7 @@ const HeroSection: React.FC = () => {
       <div
         id="mouse-gradient"
         ref={gradientRef}
-        className="fixed pointer-events-none w-96 h-96 rounded-full blur-3xl transition-all duration-500 ease-out opacity-0 z-[5]"
+        className="fixed top-0 left-0 pointer-events-none w-96 h-96 rounded-full blur-3xl transition-opacity duration-500 ease-out opacity-0 z-[5] will-change-transform"
         style={{
           background: `radial-gradient(circle, ${colors[50]}0A 0%, transparent 100%)`,
         }}

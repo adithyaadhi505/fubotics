@@ -12,7 +12,11 @@ interface ChatMessage {
   options?: string[];
 }
 
-const ChatBot: React.FC = () => {
+interface ChatBotProps {
+  visible?: boolean;
+}
+
+const ChatBot: React.FC<ChatBotProps> = ({ visible = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -111,7 +115,8 @@ const ChatBot: React.FC = () => {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-24 right-10 z-50 w-14 h-14 bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-full flex items-center justify-center shadow-lg hover:shadow-glow-tan-lg transition-all duration-300 hover:scale-110"
+        className={`fixed bottom-24 right-10 z-50 w-14 h-14 bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 rounded-full flex items-center justify-center shadow-lg hover:shadow-glow-tan-lg transition-all duration-300 hover:scale-110 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+          }`}
       >
         {isOpen ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,8 +130,8 @@ const ChatBot: React.FC = () => {
       </button>
 
       {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed bottom-40 right-10 z-50 w-96 h-[500px] glass rounded-2xl border border-accent-700 shadow-glass-lg flex flex-col overflow-hidden">
+      {isOpen && visible && (
+        <div className="fixed bottom-40 right-10 z-50 w-96 h-[500px] glass rounded-2xl border border-accent-700 shadow-glass-lg flex flex-col overflow-hidden animate-fade-in-up">
           {/* Header */}
           <div className="bg-gradient-to-r from-accent-400 to-accent-300 text-bg-900 p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">

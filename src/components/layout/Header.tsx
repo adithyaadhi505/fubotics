@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavClick }) => {
       }}
       transition={{ duration: 0.5, ease: 'easeInOut' }}
     >
-      <div className={`max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between transition-all duration-500 ${scrolled ? 'py-1' : 'py-2'
+      <div className={`w-full px-4 md:px-8 flex items-center justify-between transition-all duration-500 ${scrolled ? 'py-1' : 'py-2'
         }`}>
         {/* Logo */}
         <motion.div

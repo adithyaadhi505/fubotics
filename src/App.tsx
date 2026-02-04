@@ -11,6 +11,7 @@ import ChatBot from './components/ui/ChatBot';
 import SpaceBackground from './components/ui/SpaceBackground';
 import FacadeCleaning from './pages/FacadeCleaning';
 import DuctCleaning from './pages/DuctCleaning';
+import CustomCursor from './components/ui/CustomCursor';
 
 /**
  * HomePage Component
@@ -74,7 +75,7 @@ const HomePage: React.FC = () => {
       <Footer onNavigate={handleNavigation} />
 
       {/* ChatBot */}
-      <ChatBot />
+      <ChatBot visible={scrolled} />
     </div>
   );
 };
@@ -100,6 +101,7 @@ const ScrollToTop: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
+      <CustomCursor />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />

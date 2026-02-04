@@ -355,7 +355,8 @@ const ContactSection: React.FC = () => {
       </SectionContainer>
 
       {/* Floating Recharge Button */}
-      <a
+      {/* Floating Recharge Button - Hidden as per request */}
+      {/* <a
         href="https://recharge.fubotics.com"
         target="_blank"
         rel="noopener noreferrer"
@@ -392,7 +393,7 @@ const ContactSection: React.FC = () => {
           <div className="font-semibold">Recharge</div>
           <div className="text-sm opacity-90">Power up your robots</div>
         </div>
-      </a>
+      </a> */}
     </div>
   );
 };

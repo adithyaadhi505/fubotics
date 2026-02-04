@@ -77,31 +77,12 @@ export function InteractiveRobotSpline({
   useEffect(() => {
     // Check WebGL availability
     setHasWebGL(isWebGLAvailable());
-  }, []);
 
-  useEffect(() => {
-    // Remove watermark immediately
+    // Initial cleanup
     removeWatermark();
+    const interval = setInterval(removeWatermark, 2000); // Check much less frequently
 
-    // Set up MutationObserver to continuously remove watermark if it reappears
-    const observer = new MutationObserver(() => {
-      removeWatermark();
-    });
-
-    // Observe the entire document for changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true
-    });
-
-    // Also check periodically as fallback
-    const interval = setInterval(removeWatermark, 100);
-
-    return () => {
-      observer.disconnect();
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const handleLoad = () => {
@@ -188,7 +169,6 @@ export function InteractiveRobotSpline({
         }}
       />
 
-      {/* Light Cone Removed */}
 
       {/* Floor Mask - Hides the dark 3D plane at the bottom to blend with background */}
       <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-bg-900 via-bg-900/90 to-transparent pointer-events-none z-[20]" />
@@ -200,8 +180,8 @@ export function InteractiveRobotSpline({
           backdropFilter: 'blur(12px)',
           padding: '12px 28px',
           borderRadius: '8px',
-          border: '1.5px solid rgba(212, 196, 179, 0.3)',
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(212, 196, 179, 0.1)',
+          border: '1.5px solid rgba(12, 12, 12, 0.3)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(0, 0, 0, 0.1)',
           minWidth: '160px',
           minHeight: '44px',
           display: 'flex',
@@ -209,23 +189,6 @@ export function InteractiveRobotSpline({
           justifyContent: 'center'
         }}
       >
-        <span
-          style={{
-            background: 'linear-gradient(135deg, #f5f3f0 0%, #d4c4b3 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            fontSize: '15px',
-            fontWeight: '600',
-            letterSpacing: '2px',
-            fontFamily: "'Playfair Display', 'Georgia', serif",
-            textTransform: 'uppercase',
-            display: 'block',
-            lineHeight: '1'
-          }}
-        >
-          Fubotics
-        </span>
       </div>
 
       {/* Aggressive watermark hiding styles */}

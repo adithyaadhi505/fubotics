@@ -132,21 +132,22 @@ const DuctCleaning: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="font-hero text-5xl md:text-7xl font-bold mb-6">
               Breathe Easier.<br />
               <span className="gradient-text">Live Smarter.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-accent-200 mb-12 max-w-4xl mx-auto">
+            <p className="font-hero text-xl md:text-2xl text-accent-200 mb-12 max-w-4xl mx-auto">
               Robotic duct cleaning that clears the air — removing dust, allergens, and risk from your indoor spaces.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => navigate('/#contact')}
+                onClick={() => handleNavigation('contact')}
               >
                 Schedule a Cleaning
               </Button>
+              {/*
               <Button
                 variant="outline"
                 size="lg"
@@ -154,6 +155,7 @@ const DuctCleaning: React.FC = () => {
               >
                 See Our Robots in Action
               </Button>
+              */}
             </div>
           </motion.div>
         </div>
@@ -255,10 +257,11 @@ const DuctCleaning: React.FC = () => {
             >
               <Card className="h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
-                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                  <span className="text-accent-400 text-sm">Before Cleaning</span>
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+                  <img src="/duct_before.png" alt="Before Cleaning - Contaminated Duct" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
-                <h3 className="text-2xl font-bold text-accent-300 text-center">Contaminated</h3>
+                <h3 className="text-2xl font-bold text-accent-300 text-center">Before Cleaning</h3>
+                <h1 className="text font-bold text-accent-300 text-center">Contaminated</h1>
               </Card>
             </motion.div>
 
@@ -270,10 +273,11 @@ const DuctCleaning: React.FC = () => {
             >
               <Card className="h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
-                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                  <span className="text-accent-200 text-sm">After Cleaning</span>
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+                  <img src="/duct_after.png" alt="After Cleaning - Sanitized Duct" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
-                <h3 className="text-2xl font-bold text-accent-200 text-center">Sanitized</h3>
+                <h3 className="text-2xl font-bold text-accent-300 text-center">After Cleaning</h3>
+                <h1 className="text font-bold text-accent-200 text-center">Sanitized</h1>
               </Card>
             </motion.div>
           </div>
@@ -378,10 +382,11 @@ const DuctCleaning: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => window.open('https://wa.me/your-number', '_blank')}
+                href="https://wa.me/919731289127"
               >
                 Connect with Us on WhatsApp
               </Button>
+              {/* Recharge Button - Hidden
               <Button
                 variant="outline"
                 size="lg"
@@ -392,6 +397,7 @@ const DuctCleaning: React.FC = () => {
                   <span className="text-xs text-accent-400">Power up your robots</span>
                 </div>
               </Button>
+              */}
             </div>
           </motion.div>
         </div>

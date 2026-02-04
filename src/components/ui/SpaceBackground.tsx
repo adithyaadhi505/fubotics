@@ -15,7 +15,7 @@ const SpaceBackground: React.FC = () => {
         let height = window.innerHeight;
 
         const particles: Particle[] = [];
-        const particleCount = 60;
+        const particleCount = 40;
         const connectionDistance = 150;
 
         class Particle {

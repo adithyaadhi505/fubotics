@@ -13,7 +13,7 @@ const VisionSection: React.FC = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3,
+        delayChildren: 0.25,
       },
     },
   };

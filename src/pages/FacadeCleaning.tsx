@@ -132,18 +132,18 @@ const FacadeCleaning: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="font-hero text-5xl md:text-7xl font-bold mb-6">
               Shine Brighter.<br />
               <span className="gradient-text">Stay Safer.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-accent-200 mb-12 max-w-4xl mx-auto">
+            <p className="font-hero text-xl md:text-2xl text-accent-200 mb-12 max-w-4xl mx-auto">
               Robotic facade cleaning that keeps your glass surfaces spotless, safe, and impressive — without the risk or manual labor.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => navigate('/#contact')}
+                onClick={() => handleNavigation('contact')}
               >
                 Schedule a Cleaning
               </Button>
@@ -218,8 +218,8 @@ const FacadeCleaning: React.FC = () => {
             >
               <Card className="h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
-                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                  <span className="text-accent-400 text-sm">Before Cleaning</span>
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+                  <img src="/facade_before.png" alt="Before Cleaning - Stained Facade" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <h3 className="text-2xl font-bold text-accent-300 text-center">Stained & Weathered</h3>
               </Card>
@@ -233,8 +233,8 @@ const FacadeCleaning: React.FC = () => {
             >
               <Card className="h-full relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:shadow-glow-white transition-all duration-300" />
-                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center">
-                  <span className="text-accent-200 text-sm">After Cleaning</span>
+                <div className="aspect-video bg-bg-700 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+                  <img src="/facade_after.png" alt="After Cleaning - Clean Facade" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <h3 className="text-2xl font-bold text-accent-200 text-center">Crystal Clear</h3>
               </Card>
@@ -325,7 +325,7 @@ const FacadeCleaning: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-transparent">
+      <section className="relative z-10 py-20 md:py-32 px-4 md:px-8 bg-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -341,10 +341,11 @@ const FacadeCleaning: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => window.open('https://wa.me/your-number', '_blank')}
+                onClick={() => window.open('https://wa.me/919731289127', '_blank')}
               >
                 Connect with Us on WhatsApp
               </Button>
+              {/* Recharge Button - Hidden
               <Button
                 variant="outline"
                 size="lg"
@@ -355,6 +356,7 @@ const FacadeCleaning: React.FC = () => {
                   <span className="text-xs text-accent-400">Power up your robots</span>
                 </div>
               </Button>
+              */}
             </div>
           </motion.div>
         </div>

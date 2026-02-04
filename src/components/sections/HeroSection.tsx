@@ -37,11 +37,16 @@ const HeroSection: React.FC = () => {
 
     // Mouse-following gradient effect
     const gradient = gradientRef.current;
+    let animationFrameId: number;
+
     function onMouseMove(e: MouseEvent) {
       if (gradient) {
-        // Optimized: Use transform for GPU-accelerated movement
-        gradient.style.transform = `translate3d(${e.clientX - 192}px, ${e.clientY - 192}px, 0)`;
-        gradient.style.opacity = '1';
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(() => {
+          // Optimized: Use transform for GPU-accelerated movement
+          gradient.style.transform = `translate3d(${e.clientX - 192}px, ${e.clientY - 192}px, 0)`;
+          gradient.style.opacity = '1';
+        });
       }
     }
     function onMouseLeave() {
@@ -169,7 +174,7 @@ const HeroSection: React.FC = () => {
         {/* Main headline centered */}
         <div className="text-center max-w-4xl mx-auto drop-shadow-2xl">
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight mb-6 drop-shadow-lg"
+            className="font-hero text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight mb-6 drop-shadow-lg"
             style={{
               color: colors[50], // Default color for first line
               textShadow: '0 4px 12px rgba(0,0,0,0.5), 0 0 40px rgba(245,243,240,0.1)'
@@ -182,7 +187,6 @@ const HeroSection: React.FC = () => {
               What
             </span>
             <br />
-            {/* "Robots" in light/white, "Can Do" gets the gradient */}
             <span className="word gradient-text" data-delay="450">
               Robots Can Do.
             </span>
@@ -190,7 +194,7 @@ const HeroSection: React.FC = () => {
           </h1>
 
           <p
-            className="text-lg md:text-xl lg:text-2xl font-light tracking-wide drop-shadow-md"
+            className="font-hero text-lg md:text-xl lg:text-2xl font-light tracking-wide drop-shadow-md"
             style={{
               color: colors[200],
               textShadow: '0 2px 8px rgba(0,0,0,0.5)'
